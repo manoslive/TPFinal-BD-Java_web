@@ -1,10 +1,11 @@
 <%@page import="java.sql.Array"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Website.Methodes" %>
 
 <script type="text/javascript">
     function fillDateSpectacles(nomSpectacle,nomSalle, input)
     {
-        var urlString = "/TPFinalBD_web/dates?nomSpectacle=" + nomSpectacle + "&nomSalle=" + nomSalle;
+        var urlString = "/TPFinal-BD-Java_web/dates?nomSpectacle=" + nomSpectacle + "&nomSalle=" + nomSalle;
         $.ajax({
             type: "GET",
             url: urlString,
@@ -14,7 +15,7 @@
         });
     }
     function fillSectionCombobox(nomSalle, combo) {
-        var urlString = "/TPFinalBD_web/Spectacle?nomSalle=" + nomSalle;
+        var urlString = "/TPFinal-BD-Java_web/Spectacle?nomSalle=" + nomSalle;
         $.ajax({
             type: "GET",
             url: urlString,
@@ -26,7 +27,7 @@
     function afficherSpectacle(titre) {
         document.getElementById("content").style.height = '450';
         $("#content").load("fichespectacle.jsp", function () {
-            var urlString = "/TPFinalBD_web/InfoSpectacle?nomSpectacle=" + titre;
+            var urlString = "/TPFinal-BD-Java_web/InfoSpectacle?nomSpectacle=" + titre;
             $.ajax({
                 type: "GET",
                 url: urlString,
@@ -48,7 +49,6 @@
         var container = document.getElementById(id);
         container.innerHTML = content;
     }
-    ;
     function construireRecherche(Affiche, Titre, Categorie, Artiste, Salle) {
         var container = '';
         container = ' <div class="dateRepresentation">' + Artiste + '</div> ' +
@@ -186,10 +186,10 @@
         <fieldset class="group"> 
             <legend>Nom de spectacle</legend> 
             <ul class="checkbox_categorie"> 
-                <%for (String txt1 : methode.rechercheParTitres()) {%>
-                <li><input type="checkbox" name="cb_detailRecherche" id="cb<%=j%>" value="<%=txt1%>" /><label for="cb<%=j%>"><%=txt1.substring(0,1)+txt1.substring(1).toLowerCase()%></label></li> 
+                <%for (String txt1 : methode.rechercheParTitre()) {%>
+                    <li><input type="checkbox" name="cb_detailRecherche" id="cb<%=j%>" value="<%=txt1%>" /><label for="cb<%=j%>"><%=txt1.substring(0,1)+txt1.substring(1).toLowerCase()%></label></li> 
                     <% j += 1; %>
-                    <%}%>
+                <%}%>
             </ul> 
         </fieldset> 
     </div>

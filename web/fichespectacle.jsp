@@ -68,7 +68,7 @@
         var NbBillets = document.getElementById('info_spectacle_confirmer_nbBillets').innerHTML;
         var Salle = document.getElementById('info_spectacle_confirmer_salle').innerHTML;
         var maDate = document.getElementById('info_spectacle_confirmer_date').innerHTML;
-        var urlString = "/TPFinalBD_web/AjouterAuPanier?nomSpectacle=" + NomSpectacle + "&section="+Section+ "&nbBillets="+NbBillets+
+        var urlString = "/TPFinal-BD-Java_web/AjouterAuPanier?nomSpectacle=" + NomSpectacle + "&section="+Section+ "&nbBillets="+NbBillets+
                                                                      "&salle="+Salle+ "&date="+maDate;
         $.ajax({
             type: "GET",
@@ -82,7 +82,7 @@
     function getPrix(){
         var Section = document.getElementById('info_spectacle_confirmer_section').innerHTML;
         var NbBillets = document.getElementById('info_spectacle_confirmer_nbBillets').innerHTML;
-        var urlString = "/TPFinalBD_web/PrixSection?nomSection=" + Section + "&nbBillets="+NbBillets;
+        var urlString = "/TPFinal-BD-Java_web/PrixSection?nomSection=" + Section + "&nbBillets="+NbBillets;
         $.ajax({
             type: "GET",
             url: urlString,

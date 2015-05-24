@@ -100,7 +100,7 @@ public class Methodes {
         }
         return leSpectacle;
     }
-    public ArrayList<String> rechercheParTitres() {
+    public ArrayList<String> rechercheParTitre() {
         Website.ConnectionOracle con = new Website.ConnectionOracle();
         con.setConnection("Cooperch", "ORACLE1");
         con.connecter();

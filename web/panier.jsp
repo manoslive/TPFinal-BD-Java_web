@@ -9,7 +9,7 @@
 %>
 <script>
     function fillSectionCombobox(nomSalle, combo) {
-        var urlString = "/TPFinalBD_web/Spectacle?nomSalle=" + nomSalle;
+        var urlString = "/TPFinal-BD-Java_web/Spectacle?nomSalle=" + nomSalle;
         $.ajax({
             type: "GET",
             url: urlString,
@@ -19,7 +19,7 @@
         });
     }
     function fillQuantiteBillet(nomSection, nomSpectacle, nomSalle, numericUpDown, date) {
-        var urlString = "/TPFinalBD_web/nb?nomSection=" + nomSection + "&nomSpectacle=" + nomSpectacle + "&nomSalle=" + nomSalle+ "&date=" + date;
+        var urlString = "/TPFinal-BD-Java_web/nb?nomSection=" + nomSection + "&nomSpectacle=" + nomSpectacle + "&nomSalle=" + nomSalle+ "&date=" + date;
         $.ajax({
             type: "GET",
             url: urlString,
@@ -35,7 +35,7 @@
     }
     function fillDateSpectacles(nomSpectacle, selectNomSalle,  input)
     {
-        var urlString = "/TPFinalBD_web/dates?nomSpectacle=" + nomSpectacle+"&nomSalle="+selectNomSalle;
+        var urlString = "/TPFinal-BD-Java_web/dates?nomSpectacle=" + nomSpectacle+"&nomSalle="+selectNomSalle;
         $.ajax({
             type: "GET",
             url: urlString,
@@ -44,7 +44,7 @@
             }
         });
     }
-    function modifierItem(numBillet, numElement) {
+    function modifierItem(numBillet, numElement, facture) {
         var Salle, Date, Section, Quantite;
         var cb_name = "CB_Salles" + numElement;
         Salle = $("#" + cb_name + " :selected").text();
@@ -55,7 +55,7 @@
         cb_name = "NUD_Quantite" + numElement;
         Quantite = $("#" + cb_name).val();
 
-        var urlString = "/TPFinalBD_web/ModifierBillet?numBillet=" + numBillet
+        var urlString = "/TPFinal-BD-Java_web/ModifierBillet?numBillet=" + numBillet
                 + "&salle=" + Salle
                 + "&date=" + Date
                 + "&section=" + Section
@@ -65,13 +65,22 @@
             type: "GET",
             url: urlString,
             success: function () {
-                $('#content').load('panier.jsp');
-                $("#header").load("header.jsp");
+                if(facture === false){
+                    $('#content').load('panier.jsp');
+                    $("#header").load("header.jsp");
+                }else{
+                    $("#header").load("header.jsp");
+                }
             }
         });
     }
+    function modifierToutPanier(){
+        <%for (int h = 0; h < billets.size(); h++) {%>
+            modifierItem(<%=billets.get(h).getNumBillet()%>, <%=h+1%>, true);
+        <%}%>
+    }
     function supprimerItem(numBillet) {
-        var urlString = "/TPFinalBD_web/ModifierBillet?numBillet=" + numBillet + "&action=supprimer";
+        var urlString = "/TPFinal-BD-Java_web/ModifierBillet?numBillet=" + numBillet + "&action=supprimer";
         $.ajax({
             type: "GET",
             url: urlString,
@@ -117,8 +126,9 @@
         });
     });
     function AfficherFacture() {
+        modifierToutPanier();
         $("#content").load("facture.jsp", function () {
-            var urlString = "/TPFinalBD_web/facture";
+            var urlString = "/TPFinal-BD-Java_web/facture";
             $.ajax({
                 type: "GET",
                 url: urlString,
@@ -162,7 +172,7 @@
                         + " <select class='CB_Dates' id='CB_Dates"+j+"'></select>"
                         + " <select class='CB_Sections' id='CB_Sections"+j+"'></select>"
                         + " <input class='NUD_Quantite' id='NUD_Quantite"+j+"' type='number' value='" + billets.get(i).getQuantiteBillets() + "' min='0'/>"
-                        + " <button class='Billets_BTN_Modifier' onclick='modifierItem("+ billets.get(i).getNumBillet()+","+j+")'>Modifier</button> <button class='Billets_BTN_Supprimer' onclick='supprimerItem("+ billets.get(i).getNumBillet()+")'>Supprimer</button>"
+                        + " <button class='Billets_BTN_Modifier' onclick='modifierItem("+ billets.get(i).getNumBillet()+","+j+", false)'>Modifier</button> <button class='Billets_BTN_Supprimer' onclick='supprimerItem("+ billets.get(i).getNumBillet()+")'>Supprimer</button>"
                         + " </div>"            
                         + " </div>"
                 );
