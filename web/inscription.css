@@ -1,0 +1,137 @@
+form{
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*margin: auto;*/
+}
+.form-container {
+    border: 1px solid #0a0500;
+    background: #3db3e1;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3db3e1), to(#3db3e1));
+    background: -webkit-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -moz-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -ms-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -o-linear-gradient(top, #3db3e1, #3db3e1);
+    background-image: -ms-linear-gradient(top, #3db3e1 0%, #3db3e1 100%);
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+    min-width:300px;
+    padding:20px;
+    width:300px;
+    margin-bottom: 30px;
+}
+.form-field {
+    border: 1px solid #c9b7a2;
+    background: #ffffff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #000000;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+    padding:8px;
+    margin-bottom:20px;
+    width:280px;
+}
+.form-field:focus {
+    background: #fff;
+    color: #000000;
+}
+.form-container h2 {
+    text-shadow: #f0f0f0 0 1px 0;
+    font-size:18px;
+    margin: 0 0 10px 0;
+    font-weight:bold;
+    text-align:center;
+}
+.form-title {
+    margin-bottom:10px;
+    color: #000000;
+    text-shadow: #f0f0f0 0 1px 0;
+}
+.submit-container {
+    margin:8px 0;
+    text-align:right;
+}
+.submit-button {
+    border: 1px solid #000000;
+    background: #51524f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#b8b8b8), to(#51524f));
+    background: -webkit-linear-gradient(top, #b8b8b8, #51524f);
+    background: -moz-linear-gradient(top, #b8b8b8, #51524f);
+    background: -ms-linear-gradient(top, #b8b8b8, #51524f);
+    background: -o-linear-gradient(top, #b8b8b8, #51524f);
+    background-image: -ms-linear-gradient(top, #b8b8b8 0%, #51524f 100%);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #b8b8b8 0 1px 0;
+    color: #050505;
+    font-family: helvetica, serif;
+    padding: 8.5px 18px;
+    font-size: 14px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.submit-button:hover {
+    border: 1px solid #000000;
+    text-shadow: #cfd1ca 0 1px 0;
+    background: #9c9c9c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cfd1ca), to(#9c9c9c));
+    background: -webkit-linear-gradient(top, #cfd1ca, #9c9c9c);
+    background: -moz-linear-gradient(top, #cfd1ca, #9c9c9c);
+    background: -ms-linear-gradient(top, #cfd1ca, #9c9c9c);
+    background: -o-linear-gradient(top, #cfd1ca, #9c9c9c);
+    background-image: -ms-linear-gradient(top, #cfd1ca 0%, #9c9c9c 100%);
+    color: #000000;
+}
+.submit-button:active {
+    text-shadow: #e8e8e8 0 1px 0;
+    border: 1px solid #000000;
+    background: #cfd1cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#9c9c9c));
+    background: -webkit-linear-gradient(top, #e8e8e8, #cfd1cd);
+    background: -moz-linear-gradient(top, #e8e8e8, #cfd1cd);
+    background: -ms-linear-gradient(top, #e8e8e8, #cfd1cd);
+    background: -o-linear-gradient(top, #e8e8e8, #cfd1cd);
+    background-image: -ms-linear-gradient(top, #e8e8e8 0%, #cfd1cd 100%);
+    color: #000000;
+}
+.content_inscription{
+    margin:auto;
+}
+.dejaConnecterMessage {
+    border: 1px solid #0a0500;
+    background: #3db3e1;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3db3e1), to(#3db3e1));
+    background: -webkit-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -moz-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -ms-linear-gradient(top, #3db3e1, #3db3e1);
+    background: -o-linear-gradient(top, #3db3e1, #3db3e1);
+    background-image: -ms-linear-gradient(top, #3db3e1 0%, #3db3e1 100%);
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 1px 0;
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+/*    min-width:300px;*/
+    padding:20px;
+/*    width:300px;*/
+    margin-bottom: 30px;
+}

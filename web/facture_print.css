@@ -1,0 +1,13 @@
+#hiderow,
+.delete {
+  display: none;
+}
+#header{
+    display:none;
+}
+#footer{
+    display:none;
+}
+#menu{
+    display:none;
+}
