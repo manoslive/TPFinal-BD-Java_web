@@ -24,8 +24,8 @@
             type: "GET",
             url: urlString,
             success: function (result) {
-                if($(numericUpDown).val() >= result){
-                    $(numericUpDown).attr('value',result);
+                if($(numericUpDown > result)){
+                    //$(numericUpDown).attr('value',"0");
                     $(numericUpDown).attr('max', result);
                 }else{
                     $(numericUpDown).attr('max', result);
@@ -82,24 +82,8 @@
         });
     }
     $(document).ready(function () {
-        // Combobox salle
-        $(".CB_Salles").change(function () {
-            fillSectionCombobox($(this).val(), $(this).siblings(".CB_Sections"));
-            var nomSpectacle = document.getElementById('titre').innerHTML;
-            var selectNomSalle = document.getElementById('CB_Dates').innerHTML;
-            alert(selectNomSalle);
-            nomSpectacle = String(nomSpectacle);
-            fillDateSpectacles(nomSpectacle, selectNomSalle,  $(this).siblings(".CB_Dates"));
-        });
-        $(".CB_Salles").change();
-        // Combobox section
-        $(".CB_Sections").change(function () {
-            var nomSpectacle = document.getElementById('titre').innerHTML;
-            nomSpectacle = String(nomSpectacle);
-            fillQuantiteBillet($(this).val(), nomSpectacle, $(this).siblings(".CB_Salles").val(), $(this).siblings(".NUD_Quantite"), $(this).siblings(".CB_Dates").val());
-        });
+        //Remplir les champs selon le panier du client
         var m = 1, salle, section, date, cb_name;
-   
         <%  for(int k=0; k< billets.size(); k++)
             {%> 
                 salle = "<%= billets.get(k).getNomSalle() %>";
@@ -108,13 +92,29 @@
                 cb_name = "CB_Salles"+m;
                 document.getElementById(cb_name).value = salle;
                 cb_name = "CB_Dates"+m;
-                //alert(section);
-                document.getElementById(cb_name).value = section;
-                cb_name = "CB_Sections"+m;
-                //alert(date);
+                //alert(date +" value= "+ cb_name);
                 document.getElementById(cb_name).value = date;
+                cb_name = "CB_Sections"+m;
+                //alert(section +" value= "+ cb_name);
+                document.getElementById(cb_name).value = section;
                 m++;
           <%}%>
+        // Combobox salle
+        $(".CB_Salles").change(function () {
+            var nomSpectacle = document.getElementById('titre').innerHTML;
+            var selectNomSalle = $(this).val();
+            nomSpectacle = String(nomSpectacle);
+            fillDateSpectacles(nomSpectacle, selectNomSalle,  $(this).siblings(".CB_Dates"));
+            fillSectionCombobox($(this).val(), $(this).siblings(".CB_Sections"));
+        });
+        $(".CB_Salles").change();
+        // Combobox section
+        $(".CB_Sections").change(function () {
+            var nomSpectacle = document.getElementById('titre').innerHTML;
+            if(nomSpectacle !== null){
+                fillQuantiteBillet($(this).val(), nomSpectacle, $(this).siblings(".CB_Salles").val(), $(this).siblings(".NUD_Quantite"), $(this).siblings(".CB_Dates").val());
+            }
+        });
     });
     function AfficherFacture() {
         $("#content").load("facture.jsp", function () {
@@ -133,11 +133,6 @@
     ;
 </script>
 <%
-    /*Website.Methodes fct = new Website.Methodes();
-    ArrayList<Billets> billets;
-    String username = session.getAttribute("username").toString();
-
-    billets = fct.AfficherPanierClient(fct.GetNumClient(username));*/
     boolean afficherPanier = false;
     out.print("<div id='content_panier'");
     // Boucle qui vérifie si les billets ont un numéro de facture pour
@@ -153,8 +148,10 @@
                 + fct.getNomCompletClient(username)
                 + "</h1>"
         );
-        int j = 1;
+        int j = 1, totalFacture = 0;
         for (int i = 0; i < billets.size(); i++) {
+            int somme = billets.get(i).getQuantiteBillets() * fct.getPrixParSection(billets.get(i).getNomSection());
+            totalFacture += somme;
                 out.print(" <div class='dateRepresentation'>" + billets.get(i).getNomArtiste() + "</div>"
                         + " <div class='panier'> <div class='panier_billets_ID'>ID#"+ billets.get(i).getNumBillet() +"</div>"
                         + " <img class='affiche' src='Images/" + billets.get(i).GetAfficheSpectacle() + "'>"
@@ -171,7 +168,7 @@
                 );
                 j++;
             }
-        out.print("<button id='BTN_Facture' onclick='AfficherFacture();'>Payer et afficher facture!</button>");
+        out.print("<p>"+"Total: $" + totalFacture + ".00"+"</p><button id='BTN_Facture' onclick='AfficherFacture();'>Payer et afficher facture!</button>");
     } else {
         out.print("<h1>Votre panier est vide " + fct.getNomCompletClient(session.getAttribute("username").toString()) + "</h1>");
     }

@@ -2,24 +2,14 @@
 <%@page import="java.util.ArrayList"%>
 
 <script type="text/javascript">
-    function fillDateSpectacles(nomSpectacle, input)
+    function fillDateSpectacles(nomSpectacle,nomSalle, input)
     {
-        var urlString = "/TPFinalBD_web/dates?nomSpectacle=" + nomSpectacle;
+        var urlString = "/TPFinalBD_web/dates?nomSpectacle=" + nomSpectacle + "&nomSalle=" + nomSalle;
         $.ajax({
             type: "GET",
             url: urlString,
             success: function (result) {
                 $(input).html(result);
-            }
-        });
-    }
-    function fillSectionCombobox(nomSalle, combo) {
-        var urlString = "/TPFinalBD_web/Spectacle?nomSalle=" + nomSalle;
-        $.ajax({
-            type: "GET",
-            url: urlString,
-            success: function (result) {
-                $(combo).html(result);
             }
         });
     }
@@ -46,7 +36,8 @@
                     $("#infoSpectacle_SelectSalle").change(function () {
                         fillSectionCombobox($(this).val(), $('#infoSpectacle_SelectSection'));
                         var selectNomSpectacle = document.getElementById('infoSpectacle_titre').innerHTML;
-                        fillDateSpectacles(selectNomSpectacle, $('#infoSpectacle_SelectDate'));
+                        var selectNomSalle = $(this).val();
+                        fillDateSpectacles(selectNomSpectacle,selectNomSalle, $('#infoSpectacle_SelectDate'));
                     });
                     $("#infoSpectacle_SelectSalle").change();
                 }

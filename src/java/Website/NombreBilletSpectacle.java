@@ -25,7 +25,7 @@ public class NombreBilletSpectacle extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String reformattedStr="";
+        String reformattedStr;
         String nomSection = request.getParameter("nomSection");
         String nomSalle = request.getParameter("nomSalle");
         String nomSpectacle = request.getParameter("nomSpectacle");

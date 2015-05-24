@@ -11,7 +11,7 @@
         var connected = "<%= session.getAttribute("username") %>";
         if(connected !== "null"){
             if (selectNbBillets !== '0' ) {
-                document.getElementById('content').style.minHeight = "400px";
+                document.getElementById('infoSpectacle').style.minHeight = "400px";
                 var container = document.getElementById('info_spectacle_confirmation');
                 container.innerHTML = '<hr id="hr">' +
                         '<table id="infoSpectacle_confimer_table">' +
@@ -44,6 +44,7 @@
                         getPrix();
             }else{
                 var container = document.getElementById('info_spectacle_confirmation');
+                document.getElementById('infoSpectacle').style.minHeight = "250px";
                 container.innerHTML = '';
             }
         }else{
@@ -51,16 +52,16 @@
             container.innerHTML = '<span id="button_message_connecter" onclick=\"AllerInscription()\">S.V.P vous connecter pour pouvoir acheter un billet!</span>';
         }
     }
-    function fillSectionCombobox(nomSalle, combo) {
-        var urlString = "/TPFinalBD_web/Spectacle?nomSalle=" + nomSalle;
-        $.ajax({
-            type: "GET",
-            url: urlString,
-            success: function (result) {
-                $(combo).html(result);
-            }
-        });
-    }
+//    function fillSectionCombobox(nomSalle, combo) {
+//        var urlString = "/TPFinalBD_web/Spectacle?nomSalle=" + nomSalle;
+//        $.ajax({
+//            type: "GET",
+//            url: urlString,
+//            success: function (result) {
+//                $(combo).html(result);
+//            }
+//        });
+//    }
     function confirmerAjout(){
         var NomSpectacle = document.getElementById('info_spectacle_confirmer_nomSpectacle').innerHTML;
         var Section = document.getElementById('info_spectacle_confirmer_section').innerHTML;
