@@ -15,6 +15,7 @@
             url: urlString,
             success: function (result) {
                 $(combo).html(result);
+                setComboSection();
             }
         });
     }
@@ -41,6 +42,7 @@
             url: urlString,
             success: function (result) {
                 $(input).html(result);
+                //setComboDate();
             }
         });
     }
@@ -68,8 +70,6 @@
                 if(facture === false){
                     $('#content').load('panier.jsp');
                     $("#header").load("header.jsp");
-                }else{
-                    $("#header").load("header.jsp");
                 }
             }
         });
@@ -90,24 +90,52 @@
             }
         });
     }
-    $(document).ready(function () {
+    function setComboDate(){
         //Remplir les champs selon le panier du client
-        var m = 1, salle, section, date, cb_name;
+        var m = 1, date, cb_name;
+        <%  for(int k=0; k< billets.size(); k++)
+            {%> 
+                date = "<%= billets.get(k).getDateRepresentation() %>";
+                cb_name = "CB_Dates"+m;
+                document.getElementById(cb_name).value = date;
+                m++;
+          <%}%>
+    }
+    function setComboSalle(){
+        //Remplir les champs selon le panier du client
+        var m = 1, salle, cb_name;
         <%  for(int k=0; k< billets.size(); k++)
             {%> 
                 salle = "<%= billets.get(k).getNomSalle() %>";
-                section = "<%= billets.get(k).getNomSection() %>";
-                date = "<%= billets.get(k).getDateRepresentation() %>";
                 cb_name = "CB_Salles"+m;
                 document.getElementById(cb_name).value = salle;
-                cb_name = "CB_Dates"+m;
-                //alert(date +" value= "+ cb_name);
-                document.getElementById(cb_name).value = date;
+                m++;
+          <%}%>
+    }
+    function setComboSection(){
+        //Remplir les champs selon le panier du client
+        var m = 1, section, cb_name;
+        <%  for(int k=0; k< billets.size(); k++)
+            {%> 
+                section = "<%= billets.get(k).getNomSection() %>";
                 cb_name = "CB_Sections"+m;
-                //alert(section +" value= "+ cb_name);
                 document.getElementById(cb_name).value = section;
                 m++;
           <%}%>
+    }
+    function setComboQuantite(){
+        //Remplir les champs selon le panier du client
+        var m = 1, quantite, cb_name;
+        <%  for(int k=0; k< billets.size(); k++)
+            {%> 
+                quantite = "<%= billets.get(k).getQuantiteBillets()%>";
+                //cb_name = "CB_Sections"+m;
+                $("NUD_Quantite").attr('value', quantite);
+                //document.getElementById(cb_name).value = section;
+                m++;
+          <%}%>
+    }
+    $(document).ready(function () {   
         // Combobox salle
         $(".CB_Salles").change(function () {
             var nomSpectacle = document.getElementById('titre').innerHTML;
@@ -117,6 +145,7 @@
             fillSectionCombobox($(this).val(), $(this).siblings(".CB_Sections"));
         });
         $(".CB_Salles").change();
+        setComboSalle();
         // Combobox section
         $(".CB_Sections").change(function () {
             var nomSpectacle = document.getElementById('titre').innerHTML;
@@ -124,6 +153,7 @@
                 fillQuantiteBillet($(this).val(), nomSpectacle, $(this).siblings(".CB_Salles").val(), $(this).siblings(".NUD_Quantite"), $(this).siblings(".CB_Dates").val());
             }
         });
+        //setComboQuantite();
     });
     function AfficherFacture() {
         modifierToutPanier();
